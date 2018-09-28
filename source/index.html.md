@@ -57,12 +57,13 @@ API Documentation for TOC User Order Results page
     "confirmed": "Null",
     "enRoute": "Null",
     "arrivedEstimate": "2018-09-18 15:30",
-    "arrivedActual": "Null"
+    "arrivedActual": "Null",
+    "stopNumber": "Null"
   }
 }
 ```
 
-This endpoint retrieves all kittens.
+This endpoint pushes user order status.
 
 ### HTTP Request
 
@@ -103,6 +104,7 @@ confirmed | bool | Order accepted
 enRoute | bool | Carrier has begun route
 arrivedEstimate | datetime | Customer's expected delivery time (UTC)
 arrivedActual | datetime | Customer's actual delivery time
+stopNumber | int | Represents current stop number. Default is null
 
 <aside class="success">
 Remember — Websockets will update the state!
