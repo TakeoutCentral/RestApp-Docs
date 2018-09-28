@@ -276,11 +276,12 @@
     </span><span class="s2">"confirmed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Null"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"enRoute"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Null"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"arrivedEstimate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-18 15:30"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"arrivedActual"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Null"</span><span class="w">
+    </span><span class="s2">"arrivedActual"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Null"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"stopNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Null"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
+<p>This endpoint pushes user order status.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET http://example.com/toc/order</code></p>
 <h3 id='return'>Return</h3>
@@ -397,6 +398,11 @@
 <td>arrivedActual</td>
 <td>datetime</td>
 <td>Customer&#39;s actual delivery time</td>
+</tr>
+<tr>
+<td>stopNumber</td>
+<td>int</td>
+<td>Represents current stop number. Default is null</td>
 </tr>
 </tbody></table>
 
