@@ -76,6 +76,7 @@ Parameter | Type | Description
 id | string | User Order ID
 restaurants | array | Array of Restaurants
 destination | object | Latitude/Longitude position
+driver | object | Latitude/Longitude position
 status | object | Order
 
 ### Restaurants
