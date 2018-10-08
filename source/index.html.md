@@ -52,6 +52,10 @@ API Documentation for TOC User Order Results page
     "latitude": "35.915160",
     "longitude": "-79.056470"
   },
+  "destination": {
+      "latitude": "35.915160",
+      "longitude": "-79.056470"
+  },
   "status": {
     "ordered": "2018-09-18 12:30",
     "confirmed": "Null",
