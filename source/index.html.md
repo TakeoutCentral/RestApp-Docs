@@ -75,6 +75,7 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
     "orderID": "65",
     "subtotal": "28.50",
     "tax":"2.14",
+    "restaurantNotes" : "I'm vegan so please cook my food accordingly",
     "items": [
       {
         "whofor": "John",
@@ -127,12 +128,13 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 ### Orders
 
 
-| Parameter | Type   | Description                                              |
-| --------- | ------ | -------------------------------------------------------- |
-| orderID   | string | TOC Defined order number from 00 to 99                   |
-| items     | Array  | Array of Item objects, contains options and instructions |
-| subtotal  | string | Total cost of the food in USD                            |
-| tax       | string | Sales Tax for the food                                   |
+| Parameter       | Type   | Description                                              |
+| --------------- | ------ | -------------------------------------------------------- |
+| orderID         | string | TOC Defined order number from 00 to 99                   |
+| items           | Array  | Array of Item objects, contains options and instructions |
+| subtotal        | string | Total cost of the food in USD                            |
+| tax             | string | Sales Tax for the food                                   |
+| restaurantNotes | string | Notes for the restaurant as a whole                      |
 
 ### Item
 
