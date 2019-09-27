@@ -348,6 +348,7 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
     </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.50"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"tax"</span><span class="p">:</span><span class="s2">"2.14"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"restaurantNotes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"I'm vegan so please cook my food accordingly"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cartID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"whofor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
@@ -415,6 +416,11 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <td>orderID</td>
 <td>string</td>
 <td>TOC Defined order number from 00 to 99</td>
+</tr>
+<tr>
+<td>cartID</td>
+<td>string</td>
+<td>TOC Defined cartID string.</td>
 </tr>
 <tr>
 <td>items</td>
@@ -511,6 +517,14 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 </tr>
 </tbody></table>
 <h1 id='confirm-order'>Confirm Order</h1><h2 id='http-request-3'>HTTP Request</h2>
+<blockquote>
+<p>Requests need to contain a valid cartID</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"cartID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 <p><code>POST https://takeoutcentral.com/restaurant-app/confirm-order</code></p>
 <h2 id='response'>Response</h2>
 <blockquote>
@@ -553,6 +567,14 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 </tr>
 </tbody></table>
 <h1 id='complete-order'>Complete Order</h1><h2 id='http-request-4'>HTTP Request</h2>
+<blockquote>
+<p>Requests need to contain a valid cartID</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"cartID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 <p><code>POST https://takeoutcentral.com/restaurant-app/order-ready</code></p>
 <h2 id='response-2'>Response</h2>
 <blockquote>
