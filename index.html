@@ -222,10 +222,46 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#user" class="toc-h1 toc-link" data-title="User">User</a>
+            <a href="#login" class="toc-h1 toc-link" data-title="Login">Login</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-user-order-state" class="toc-h2 toc-link" data-title="Get User Order State">Get User Order State</a>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#return" class="toc-h2 toc-link" data-title="Return">Return</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#get-orders" class="toc-h1 toc-link" data-title="Get Orders">Get Orders</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request-2" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#return-2" class="toc-h2 toc-link" data-title="Return">Return</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#confirm-order" class="toc-h1 toc-link" data-title="Confirm Order">Confirm Order</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request-3" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#response" class="toc-h2 toc-link" data-title="Response">Response</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#complete-order" class="toc-h1 toc-link" data-title="Complete Order">Complete Order</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request-4" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#response-2" class="toc-h2 toc-link" data-title="Response">Response</a>
                   </li>
               </ul>
           </li>
@@ -238,57 +274,45 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>API Documentation for TOC User Order Results page</p>
-<h1 id='user'>User</h1><h2 id='get-user-order-state'>Get User Order State</h2><pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="s1">'wss://echo.websocket.org'</span><span class="p">);</span>
+<p>API Documentation for Takeout Central&#39;s Restaurant App</p>
 
-  <span class="c1">// Handle any errors that occur.</span>
-  <span class="nx">socket</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`WebSocket Error: </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<aside class="success">
+Remember: API Examples are in JSON format but must be sent to the server as Content-Type: application/x-www-form-urlencoded
+</aside>
+<h1 id='login'>Login</h1><h2 id='http-request'>HTTP Request</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
+  </span><span class="s2">"restLogin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"predefined username"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"predefined password"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>POST https://takeoutcentral.com/restaurant-app/login</code></p>
 
-  <span class="nx">socket</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Connected to: </span><span class="p">${</span><span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">.</span><span class="nx">url</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
-
-  <span class="c1">// Handle messages sent by the server.</span>
-  <span class="nx">socket</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-
-  <span class="c1">// Show a disconnected message when the WebSocket is closed.</span>
-  <span class="nx">socket</span><span class="p">.</span><span class="nx">onclose</span> <span class="o">=</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Disconnected from WebSocket.`</span><span class="p">);</span>
-</code></pre>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>restLogin</td>
+<td>string</td>
+<td>Restaurant login username</td>
+</tr>
+<tr>
+<td>pass</td>
+<td>string</td>
+<td>associated password</td>
+</tr>
+</tbody></table>
+<h2 id='return'>Return</h2>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JMSubs 10"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"restaurants"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jersey Mikes"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/restlogos/rest20LogoOpen.gif"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.9328"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-79.0260"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"timeOfArrival"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-18 14:30"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"stopNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.915160"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-79.056470"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"driver"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.915160"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-79.056470"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"ordered"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-18 12:30"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"confirmed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Null"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"enRoute"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Null"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"arrivedEstimate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-18 15:30"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"arrivedActual"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Null"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"stopNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Null"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"restaurantID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sessionID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint pushes user order status.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/toc/order</code></p>
-<h3 id='return'>Return</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -297,127 +321,273 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
+<td>restaurantID</td>
 <td>string</td>
-<td>User Order ID</td>
+<td>TOC ID for Restaurant</td>
 </tr>
 <tr>
-<td>restaurants</td>
-<td>array</td>
-<td>Array of Restaurants</td>
-</tr>
-<tr>
-<td>destination</td>
-<td>object</td>
-<td>Latitude/Longitude position</td>
-</tr>
-<tr>
-<td>driver</td>
-<td>object</td>
-<td>Latitude/Longitude position</td>
-</tr>
-<tr>
-<td>status</td>
-<td>object</td>
-<td>Order</td>
-</tr>
-</tbody></table>
-<h3 id='restaurants'>Restaurants</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>stopNumber</td>
+<td>sessionID</td>
 <td>string</td>
-<td>Sort order</td>
-</tr>
-<tr>
-<td>icon</td>
-<td>string</td>
-<td>Restaurant&#39;s icon</td>
-</tr>
-<tr>
-<td>latitude</td>
-<td>string</td>
-<td>Restaurant Location Information</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>string</td>
-<td>Restaurant Location Information</td>
-</tr>
-<tr>
-<td>timeOfArrival</td>
-<td>datetime</td>
-<td>Carrier&#39;s arrival time (UTC)</td>
-</tr>
-</tbody></table>
-<h3 id='destination'>Destination</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>latitude</td>
-<td>string</td>
-<td>Customer&#39;s Location Information</td>
-</tr>
-<tr>
-<td>longitude</td>
-<td>string</td>
-<td>Customer&#39;s Location Information</td>
-</tr>
-</tbody></table>
-<h3 id='status'>Status</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ordered</td>
-<td>datetime</td>
-<td>Customer&#39;s ordered time  (UTC)</td>
-</tr>
-<tr>
-<td>confirmed</td>
-<td>bool</td>
-<td>Order accepted</td>
-</tr>
-<tr>
-<td>enRoute</td>
-<td>bool</td>
-<td>Carrier has begun route</td>
-</tr>
-<tr>
-<td>arrivedEstimate</td>
-<td>datetime</td>
-<td>Customer&#39;s expected delivery time (UTC)</td>
-</tr>
-<tr>
-<td>arrivedActual</td>
-<td>datetime</td>
-<td>Customer&#39;s actual delivery time</td>
-</tr>
-<tr>
-<td>stopNumber</td>
-<td>int</td>
-<td>Represents current stop number. Default is null</td>
+<td>TOC Defined API Auth Key</td>
 </tr>
 </tbody></table>
 
 <aside class="success">
-Remember — Websockets will update the state!
+sessionID's value needs to be used in each subsequent header's HTTP Request with the key "SESSIONID"
 </aside>
+<h1 id='get-orders'>Get Orders</h1><h2 id='http-request-2'>HTTP Request</h2>
+<p><code>GET https://takeoutcentral.com/restaurant-app/get-active-orders/&lt;cartID&gt;</code></p>
+<h2 id='return-2'>Return</h2>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"Orders"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
+  </span><span class="p">[{</span><span class="w"> 
+    </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.50"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tax"</span><span class="p">:</span><span class="s2">"2.14"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"whofor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"itemid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344514B"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552300"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 2.50"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slab Bacon"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing special instructions"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple &amp; Bacon Bowl"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Veggie Burger"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 2.50"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552298"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Egg"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 1.50"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552299"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple &amp; Bacon Bowl"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"whofor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"itemid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344514A"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.00"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Orders</td>
+<td>Array</td>
+<td>Array of Order objects sorted by...</td>
+</tr>
+</tbody></table>
+<h3 id='orders'>Orders</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderID</td>
+<td>string</td>
+<td>TOC Defined order number from 00 to 99</td>
+</tr>
+<tr>
+<td>items</td>
+<td>Array</td>
+<td>Array of Item objects, contains options and instructions</td>
+</tr>
+<tr>
+<td>subtotal</td>
+<td>string</td>
+<td>Total cost of the food in USD</td>
+</tr>
+<tr>
+<td>tax</td>
+<td>string</td>
+<td>Sales Tax for the food</td>
+</tr>
+</tbody></table>
+<h3 id='item'>Item</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>itemid</td>
+<td>string</td>
+<td>TOC defined for item. Unique WRT the current cart</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>string</td>
+<td>quantity of current item in order</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>price of item in USD</td>
+</tr>
+<tr>
+<td>item</td>
+<td>string</td>
+<td>Human readable name of item</td>
+</tr>
+<tr>
+<td>options</td>
+<td>Array</td>
+<td>Array of Option objects</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>string</td>
+<td>Special instructions for the item, this can be pretty long</td>
+</tr>
+<tr>
+<td>whofor</td>
+<td>string</td>
+<td>Name of the customer who ordered this</td>
+</tr>
+</tbody></table>
+<h3 id='option'>Option</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>optionid</td>
+<td>string</td>
+<td>TOC defined id for option</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>string</td>
+<td>quantity of option</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>price of option. About half the time this will be 0.00</td>
+</tr>
+<tr>
+<td>option</td>
+<td>Array</td>
+<td>Human readable name for the option</td>
+</tr>
+</tbody></table>
+<h1 id='confirm-order'>Confirm Order</h1><h2 id='http-request-3'>HTTP Request</h2>
+<p><code>POST https://takeoutcentral.com/restaurant-app/confirm-order</code></p>
+<h2 id='response'>Response</h2>
+<blockquote>
+<p>Responses will look like this</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"successMessage"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Status 200 OK</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>object</td>
+<td>success object describing the success status</td>
+</tr>
+</tbody></table>
+<h3 id='success'>Success</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>successMessage</td>
+<td>string</td>
+<td>Success string. Usually &quot;0&quot;</td>
+</tr>
+</tbody></table>
+<h1 id='complete-order'>Complete Order</h1><h2 id='http-request-4'>HTTP Request</h2>
+<p><code>POST https://takeoutcentral.com/restaurant-app/order-ready</code></p>
+<h2 id='response-2'>Response</h2>
+<blockquote>
+<p>Responses will look like this</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"successMessage"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Status 200 OK</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>object</td>
+<td>success object describing the success status</td>
+</tr>
+</tbody></table>
+<h3 id='success-2'>Success</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>successMessage</td>
+<td>string</td>
+<td>Success string. Usually &quot;0&quot;</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
