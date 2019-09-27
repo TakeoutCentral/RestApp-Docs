@@ -336,7 +336,7 @@ Remember: API Examples are in JSON format but must be sent to the server as Cont
 sessionID's value needs to be used in each subsequent header's HTTP Request with the key "SESSIONID"
 </aside>
 <h1 id='get-orders'>Get Orders</h1><h2 id='http-request-2'>HTTP Request</h2>
-<p><code>GET https://takeoutcentral.com/restaurant-app/get-active-orders/&lt;cartID&gt;</code></p>
+<p><code>GET https://takeoutcentral.com/restaurant-app/get-active-orders/</code></p>
 <h2 id='return-2'>Return</h2>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -344,11 +344,11 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="s2">"Orders"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
   </span><span class="p">[{</span><span class="w"> 
-    </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"orderNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.50"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"tax"</span><span class="p">:</span><span class="s2">"2.14"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"restaurantNotes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"I'm vegan so please cook my food accordingly"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cartID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"whofor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
@@ -413,14 +413,14 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 </tr>
 </thead><tbody>
 <tr>
-<td>orderID</td>
+<td>orderNo</td>
 <td>string</td>
 <td>TOC Defined order number from 00 to 99</td>
 </tr>
 <tr>
-<td>cartID</td>
+<td>orderID</td>
 <td>string</td>
-<td>TOC Defined cartID string.</td>
+<td>TOC Defined orderID string.</td>
 </tr>
 <tr>
 <td>items</td>
@@ -521,11 +521,11 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <p>Requests need to contain a valid cartID</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"cartID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="w">
+  </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p><code>POST https://takeoutcentral.com/restaurant-app/confirm-order</code></p>
+<p><code>POST https://takeoutcentral.com/restaurant-app/confirm-order/</code></p>
 <h2 id='response'>Response</h2>
 <blockquote>
 <p>Responses will look like this</p>
@@ -575,7 +575,7 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p><code>POST https://takeoutcentral.com/restaurant-app/order-ready</code></p>
+<p><code>POST https://takeoutcentral.com/restaurant-app/order-ready/</code></p>
 <h2 id='response-2'>Response</h2>
 <blockquote>
 <p>Responses will look like this</p>
