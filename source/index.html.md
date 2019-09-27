@@ -165,7 +165,7 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 
 ## HTTP Request
 
-> Requests need to contain a valid cartID
+> Requests need to contain a valid orderID
 
 ```json
 {
@@ -207,11 +207,11 @@ Status 200 OK
 
 ## HTTP Request
 
-> Requests need to contain a valid cartID
+> Requests need to contain a valid orderID
 
 ```json
 {
-  "cartID": "1KL91EUR2JI445D8VOD8L7HWQ1885"
+  "orderID": "1KL91EUR2JI445D8VOD8L7HWQ1885"
 }
 
 ```
