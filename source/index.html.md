@@ -76,6 +76,7 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
     "subtotal": "28.50",
     "tax":"2.14",
     "restaurantNotes" : "I'm vegan so please cook my food accordingly",
+    "cartID": "1KL91EUR2JI445D8VOD8L7HWQ1885",
     "items": [
       {
         "whofor": "John",
@@ -131,6 +132,7 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 | Parameter       | Type   | Description                                              |
 | --------------- | ------ | -------------------------------------------------------- |
 | orderID         | string | TOC Defined order number from 00 to 99                   |
+| cartID          | string | TOC Defined cartID string.                               |
 | items           | Array  | Array of Item objects, contains options and instructions |
 | subtotal        | string | Total cost of the food in USD                            |
 | tax             | string | Sales Tax for the food                                   |
@@ -162,6 +164,15 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 # Confirm Order
 
 ## HTTP Request
+
+> Requests need to contain a valid cartID
+
+```json
+{
+  "cartID": "1KL91EUR2JI445D8VOD8L7HWQ1885"
+}
+
+```
 
 `POST https://takeoutcentral.com/restaurant-app/confirm-order`
 
@@ -196,6 +207,14 @@ Status 200 OK
 
 ## HTTP Request
 
+> Requests need to contain a valid cartID
+
+```json
+{
+  "cartID": "1KL91EUR2JI445D8VOD8L7HWQ1885"
+}
+
+```
 
 `POST https://takeoutcentral.com/restaurant-app/order-ready`
 
