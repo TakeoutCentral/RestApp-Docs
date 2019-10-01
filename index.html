@@ -279,7 +279,11 @@
 <aside class="success">
 Remember: API Examples are in JSON format but must be sent to the server as Content-Type: application/x-www-form-urlencoded
 </aside>
-<h1 id='login'>Login</h1><h2 id='http-request'>HTTP Request</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
+
+<aside class="success">
+When testing, the endpoint should be directed to the subdomain https://scratch.takeoutcentral.com. Be sure that's what's in use before reporting errors. 
+</aside>
+<h1 id='login'>Login</h1><h2 id='http-request'>HTTP Request</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"restLogin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"predefined username"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"predefined password"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -342,53 +346,54 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="s2">"Orders"</span><span class="w"> </span><span class="p">:</span><span class="w"> 
-  </span><span class="p">[{</span><span class="w"> 
-    </span><span class="s2">"orderNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.50"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tax"</span><span class="p">:</span><span class="s2">"2.14"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"restaurantNotes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"I'm vegan so please cook my food accordingly"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"whofor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"itemid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344514B"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552300"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 2.50"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slab Bacon"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing special instructions"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple &amp; Bacon Bowl"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Veggie Burger"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 2.50"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552298"</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Egg"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 1.50"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552299"</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple &amp; Bacon Bowl"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"whofor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"itemid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344514A"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.00"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}]</span><span class="w">
+  </span><span class="s2">"Orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"orderNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.50"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.14"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"restaurantNotes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I'm vegan so please cook my food accordingly"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"whofor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"itemid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344514B"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552300"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 2.50"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slab Bacon"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing special instructions"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple &amp; Bacon Bowl"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Veggie Burger"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 2.50"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552298"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Egg"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 1.50"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552299"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple &amp; Bacon Bowl"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"whofor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"itemid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344514A"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.00"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
@@ -523,7 +528,6 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <p><code>POST https://takeoutcentral.com/restaurant-app/confirm-order/</code></p>
 <h2 id='response'>Response</h2>
@@ -532,10 +536,9 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"successMessage"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <p>Status 200 OK</p>
 
@@ -573,7 +576,6 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <p><code>POST https://takeoutcentral.com/restaurant-app/order-ready/</code></p>
 <h2 id='response-2'>Response</h2>
@@ -582,10 +584,9 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"successMessage"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <p>Status 200 OK</p>
 
