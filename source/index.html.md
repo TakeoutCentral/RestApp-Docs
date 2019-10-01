@@ -18,12 +18,16 @@ API Documentation for Takeout Central's Restaurant App
 Remember: API Examples are in JSON format but must be sent to the server as Content-Type: application/x-www-form-urlencoded
 </aside>
 
+<aside class="success">
+When testing, the endpoint should be directed to the subdomain https://scratch.takeoutcentral.com. Be sure that's what's in use before reporting errors. 
+</aside>
+
 # Login
 
 ## HTTP Request
 
 ```json
-{ 
+{
   "restLogin": "predefined username",
   "pass": "predefined password"
 }
@@ -35,7 +39,6 @@ Remember: API Examples are in JSON format but must be sent to the server as Cont
 | --------- | ------ | ------------------------- |
 | restLogin | string | Restaurant login username |
 | pass      | string | associated password       |
-
 
 ## Return
 
@@ -57,7 +60,6 @@ Remember: API Examples are in JSON format but must be sent to the server as Cont
 sessionID's value needs to be used in each subsequent header's HTTP Request with the key "SESSIONID"
 </aside>
 
-
 # Get Orders
 
 ## HTTP Request
@@ -70,53 +72,54 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 
 ```json
 {
-"Orders" : 
-  [{ 
-    "orderNo": "65",
-    "subtotal": "28.50",
-    "tax":"2.14",
-    "restaurantNotes" : "I'm vegan so please cook my food accordingly",
-    "orderID": "1KL91EUR2JI445D8VOD8L7HWQ1885",
-    "items": [
-      {
-        "whofor": "John",
-        "itemid": "344514B",
-        "price": "11.00",
-        "qty": "1",
-        "options": [
-          {
-            "optionid": "1552300",
-            "price": " 2.50",
-            "option": "Slab Bacon",
-            "qty": "1"
-          }
-        ],
-        "comments": "Testing special instructions",
-        "item": "Apple & Bacon Bowl"
-      },
-      {
-        "options": [
-          {
-            "option": "Veggie Burger",
-            "qty": "1",
-            "price": " 2.50",
-            "optionid": "1552298"
-          },
-          {
-            "option": "Egg",
-            "qty": "1",
-            "price": " 1.50",
-            "optionid": "1552299"
-          }
-        ],
-        "qty": "1",
-        "item": "Apple & Bacon Bowl",
-        "whofor": "Mike",
-        "itemid": "344514A",
-        "price": "11.00"
-      }
-    ]
-  }]
+  "Orders": [
+    {
+      "orderNo": "65",
+      "subtotal": "28.50",
+      "tax": "2.14",
+      "restaurantNotes": "I'm vegan so please cook my food accordingly",
+      "orderID": "1KL91EUR2JI445D8VOD8L7HWQ1885",
+      "items": [
+        {
+          "whofor": "John",
+          "itemid": "344514B",
+          "price": "11.00",
+          "qty": "1",
+          "options": [
+            {
+              "optionid": "1552300",
+              "price": " 2.50",
+              "option": "Slab Bacon",
+              "qty": "1"
+            }
+          ],
+          "comments": "Testing special instructions",
+          "item": "Apple & Bacon Bowl"
+        },
+        {
+          "options": [
+            {
+              "option": "Veggie Burger",
+              "qty": "1",
+              "price": " 2.50",
+              "optionid": "1552298"
+            },
+            {
+              "option": "Egg",
+              "qty": "1",
+              "price": " 1.50",
+              "optionid": "1552299"
+            }
+          ],
+          "qty": "1",
+          "item": "Apple & Bacon Bowl",
+          "whofor": "Mike",
+          "itemid": "344514A",
+          "price": "11.00"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -124,10 +127,7 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 | --------- | ----- | ----------------------------------- |
 | Orders    | Array | Array of Order objects sorted by... |
 
-
-
 ### Orders
-
 
 | Parameter       | Type   | Description                                              |
 | --------------- | ------ | -------------------------------------------------------- |
@@ -159,8 +159,6 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 | price     | string | price of option. About half the time this will be 0.00 |
 | option    | Array  | Human readable name for the option                     |
 
-
-
 # Confirm Order
 
 ## HTTP Request
@@ -171,7 +169,6 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 {
   "orderID": "1KL91EUR2JI445D8VOD8L7HWQ1885"
 }
-
 ```
 
 `POST https://takeoutcentral.com/restaurant-app/confirm-order/`
@@ -183,10 +180,9 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 ```json
 {
   "success": {
-    "successMessage" : "0"
+    "successMessage": "0"
   }
 }
-
 ```
 
 Status 200 OK
@@ -200,8 +196,6 @@ Status 200 OK
 | Parameter      | Type   | Description                 |
 | -------------- | ------ | --------------------------- |
 | successMessage | string | Success string. Usually "0" |
-
-
 
 # Complete Order
 
@@ -213,23 +207,20 @@ Status 200 OK
 {
   "orderID": "1KL91EUR2JI445D8VOD8L7HWQ1885"
 }
-
 ```
 
 `POST https://takeoutcentral.com/restaurant-app/order-ready/`
 
 ## Response
 
-
 > Responses will look like this
 
 ```json
 {
   "success": {
-    "successMessage" : "0"
+    "successMessage": "0"
   }
 }
-
 ```
 
 Status 200 OK
@@ -243,4 +234,3 @@ Status 200 OK
 | Parameter      | Type   | Description                 |
 | -------------- | ------ | --------------------------- |
 | successMessage | string | Success string. Usually "0" |
-
