@@ -233,6 +233,9 @@
               </ul>
           </li>
           <li>
+            <a href="#onesignal-registration" class="toc-h1 toc-link" data-title="Onesignal Registration">Onesignal Registration</a>
+          </li>
+          <li>
             <a href="#get-orders" class="toc-h1 toc-link" data-title="Get Orders">Get Orders</a>
               <ul class="toc-list-h2">
                   <li>
@@ -262,6 +265,17 @@
                   </li>
                   <li>
                     <a href="#response-2" class="toc-h2 toc-link" data-title="Response">Response</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#responses" class="toc-h1 toc-link" data-title="Responses">Responses</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#success-3" class="toc-h2 toc-link" data-title="Success">Success</a>
+                  </li>
+                  <li>
+                    <a href="#error" class="toc-h2 toc-link" data-title="Error">Error</a>
                   </li>
               </ul>
           </li>
@@ -308,7 +322,7 @@ When testing, the endpoint should be directed to the subdomain https://scratch.t
 <td>associated password</td>
 </tr>
 </tbody></table>
-<h2 id='return'>Return</h2>
+<h2 id='return'>Return</h2><h3 id='successful-login'>Successful Login</h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -338,6 +352,62 @@ When testing, the endpoint should be directed to the subdomain https://scratch.t
 
 <aside class="success">
 sessionID's value needs to be used in each subsequent header's HTTP Request with the key "SESSIONID"
+</aside>
+<h3 id='incorrect-login'>Incorrect Login</h3>
+<blockquote>
+<p>This is the format and message for an invalid log in attempt</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"errorType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid Credentials"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Status 200 OK</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>object</td>
+<td>error object describing the error that occured</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>errorType</td>
+<td>string</td>
+<td>&quot;Invalid Credentials&quot; will always be the return value.</td>
+</tr>
+</tbody></table>
+<h1 id='onesignal-registration'>Onesignal Registration</h1><pre class="highlight kotlin tab-kotlin"><code><span class="k">import</span> <span class="nn">com.onesignal.OneSignal</span>
+<span class="p">.</span>
+<span class="p">.</span>
+<span class="p">.</span>
+<span class="n">OneSignal</span><span class="p">.</span><span class="n">sendTag</span><span class="p">(</span><span class="s">"restID"</span><span class="p">,</span> <span class="n">restaurantID</span><span class="p">)</span>
+</code></pre>
+<p>Upon a successful log in, the restaurantID will be returned to the client. At this point the app should register with OneSignal using the code seen to the right.</p>
+
+<p>This will allow Takeout Central servers to send push notifications to any apps with that associated restaurantID tag. </p>
+
+<aside class='success'>
+Further documentation for sendTag can be found <a href='https://documentation.onesignal.com/docs/android-native-sdk#section--sendtag-' target='blank' >here.</a>
+</aside>
+
+<aside class='success'>More info on integrating OneSignal can be found <a href='https://documentation.onesignal.com/docs/android-sdk-setup' target='blank'> here.</a>
 </aside>
 <h1 id='get-orders'>Get Orders</h1><h2 id='http-request-2'>HTTP Request</h2>
 <p><code>GET https://takeoutcentral.com/restaurant-app/get-active-orders/</code></p>
@@ -615,6 +685,61 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <td>successMessage</td>
 <td>string</td>
 <td>Success string. Usually &quot;0&quot;</td>
+</tr>
+</tbody></table>
+<h1 id='responses'>Responses</h1><h2 id='success-3'>Success</h2><h3 id='status-codes'>Status Codes</h3>
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Every authenticated request recieved by the server and responded to without internal server error should return this</td>
+</tr>
+<tr>
+<td>401</td>
+<td>This will be returned if Session ID has been invalidated server side or deleted client side. App should return to log-in screen after this</td>
+</tr>
+</tbody></table>
+<h2 id='error'>Error</h2>
+<blockquote>
+<p>Errors will look like this</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"errorType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Missing orderID"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Nominal errors such as incorrect log-in credentials, incorrect orderIDs for confirm/complete will return with a status code of 200 but with an error object defined below.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>object</td>
+<td>error object describing the error that occured</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>errorType</td>
+<td>string</td>
+<td>String offering an explanation for error. Used in debugging but shouldn&#39;t be shown to users</td>
 </tr>
 </tbody></table>
 
