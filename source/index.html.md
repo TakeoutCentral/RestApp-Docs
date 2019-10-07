@@ -208,6 +208,7 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 | option    | Array  | Human readable name for the option                     |
 
 # Confirm Order
+Confirming an order on the app moves it into the stage: 'In the Kitchen'.
 
 ## HTTP Request
 
@@ -246,7 +247,7 @@ Status 200 OK
 | successMessage | string | Success string. Usually "0" |
 
 # Complete Order
-
+Completing an order on the app moves it into the stage: 'Ready for Pickups'.
 ## HTTP Request
 
 > Requests need to contain a valid orderID
