@@ -42,6 +42,8 @@ When testing, the endpoint should be directed to the subdomain https://scratch.t
 
 ## Return
 
+### Successful Login
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -58,6 +60,52 @@ When testing, the endpoint should be directed to the subdomain https://scratch.t
 
 <aside class="success">
 sessionID's value needs to be used in each subsequent header's HTTP Request with the key "SESSIONID"
+</aside>
+
+### Incorrect Login
+
+> This is the format and message for an invalid log in attempt
+
+```json
+{
+  "error": {
+    "errorType": "Invalid Credentials"
+  }
+}
+
+```
+
+Status 200 OK
+
+| Parameter | Type   | Description                                    |
+| --------- | ------ | ---------------------------------------------- |
+| error     | object | error object describing the error that occured |
+
+
+| Parameter | Type   | Description                                            |
+| --------- | ------ | ------------------------------------------------------ |
+| errorType | string | "Invalid Credentials" will always be the return value. |
+
+
+# Onesignal Registration
+
+```kotlin
+import com.onesignal.OneSignal
+.
+.
+.
+OneSignal.sendTag("restID", restaurantID)
+```
+
+Upon a successful log in, the restaurantID will be returned to the client. At this point the app should register with OneSignal using the code seen to the right.
+
+This will allow Takeout Central servers to send push notifications to any apps with that associated restaurantID tag. 
+
+<aside class='success'>
+Further documentation for sendTag can be found <a href='https://documentation.onesignal.com/docs/android-native-sdk#section--sendtag-' target='blank' >here.</a>
+</aside>
+
+<aside class='success'>More info on integrating OneSignal can be found <a href='https://documentation.onesignal.com/docs/android-sdk-setup' target='blank'> here.</a>
 </aside>
 
 # Get Orders
@@ -234,3 +282,38 @@ Status 200 OK
 | Parameter      | Type   | Description                 |
 | -------------- | ------ | --------------------------- |
 | successMessage | string | Success string. Usually "0" |
+
+
+# Responses
+
+## Success
+
+### Status Codes
+
+| Status Code | Description                                                                                                                                |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| 200         | Every authenticated request recieved by the server and responded to without internal server error should return this                       |
+| 401         | This will be returned if Session ID has been invalidated server side or deleted client side. App should return to log-in screen after this |
+
+
+## Error
+
+> Errors will look like this
+
+```json
+{
+  "error": {
+    "errorType": "Missing orderID"
+  }
+}
+```
+
+Nominal errors such as incorrect log-in credentials, incorrect orderIDs for confirm/complete will return with a status code of 200 but with an error object defined below.
+
+| Parameter | Type   | Description                                    |
+| --------- | ------ | ---------------------------------------------- |
+| error     | object | error object describing the error that occured |
+
+| Parameter | Type   | Description                                                                                 |
+| --------- | ------ | ------------------------------------------------------------------------------------------- |
+| errorType | string | String offering an explanation for error. Used in debugging but shouldn't be shown to users |
