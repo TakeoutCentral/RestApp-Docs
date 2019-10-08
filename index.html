@@ -711,12 +711,12 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 <td>Every authenticated request recieved by the server and responded to without internal server error should return this</td>
 </tr>
 <tr>
-<td>422</td>
-<td>This will be returned in the case of a client-side error such as invalid login credentials, missing orderID, or invalid formats</td>
-</tr>
-<tr>
 <td>401</td>
 <td>This will be returned if Session ID has been invalidated server side or deleted client side. App should return to log-in screen after this</td>
+</tr>
+<tr>
+<td>422</td>
+<td>This will be returned in the case of a client-side error such as invalid login credentials, missing orderID, or invalid formats</td>
 </tr>
 </tbody></table>
 <h2 id='error'>Error</h2>
