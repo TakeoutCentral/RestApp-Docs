@@ -72,7 +72,6 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
     "errorType": "Invalid Credentials"
   }
 }
-
 ```
 
 Status 200 OK
@@ -81,11 +80,9 @@ Status 200 OK
 | --------- | ------ | ---------------------------------------------- |
 | error     | object | error object describing the error that occured |
 
-
 | Parameter | Type   | Description                                            |
 | --------- | ------ | ------------------------------------------------------ |
 | errorType | string | "Invalid Credentials" will always be the return value. |
-
 
 # Onesignal Registration
 
@@ -99,7 +96,7 @@ OneSignal.sendTag("restID", restaurantID)
 
 Upon a successful log in, the restaurantID will be returned to the client. At this point the app should register with OneSignal using the code seen to the right.
 
-This will allow Takeout Central servers to send push notifications to any apps with that associated restaurantID tag. 
+This will allow Takeout Central servers to send push notifications to any apps with that associated restaurantID tag.
 
 <aside class='success'>
 Further documentation for sendTag can be found <a href='https://documentation.onesignal.com/docs/android-native-sdk#section--sendtag-' target='blank' >here.</a>
@@ -125,6 +122,7 @@ Further documentation for sendTag can be found <a href='https://documentation.on
       "orderNo": "65",
       "subtotal": "28.50",
       "tax": "2.14",
+      "sendTime": "2019-09-15T15:53:00",
       "restaurantNotes": "I'm vegan so please cook my food accordingly",
       "orderID": "1KL91EUR2JI445D8VOD8L7HWQ1885",
       "items": [
@@ -177,14 +175,15 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 
 ### Orders
 
-| Parameter       | Type   | Description                                              |
-| --------------- | ------ | -------------------------------------------------------- |
-| orderNo         | string | TOC Defined order number from 00 to 99                   |
-| orderID         | string | TOC Defined orderID string.                              |
-| items           | Array  | Array of Item objects, contains options and instructions |
-| subtotal        | string | Total cost of the food in USD                            |
-| tax             | string | Sales Tax for the food                                   |
-| restaurantNotes | string | Notes for the restaurant as a whole                      |
+| Parameter       | Type              | Description                                                      |
+| --------------- | ----------------- | ---------------------------------------------------------------- |
+| orderNo         | string            | TOC Defined order number from 00 to 99                           |
+| orderID         | string            | TOC Defined orderID string.                                      |
+| sendTime        | ISO-8601 DateTime | Formatted Datetime for when the order was sent to the restaurant |
+| items           | Array             | Array of Item objects, contains options and instructions         |
+| subtotal        | string            | Total cost of the food in USD                                    |
+| tax             | string            | Sales Tax for the food                                           |
+| restaurantNotes | string            | Notes for the restaurant as a whole                              |
 
 ### Item
 
@@ -208,6 +207,7 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 | option    | Array  | Human readable name for the option                     |
 
 # Confirm Order
+
 Confirming an order on the app moves it into the stage: 'In the Kitchen'.
 
 ## HTTP Request
@@ -247,7 +247,9 @@ Status 200 OK
 | successMessage | string | Success string. Usually "0" |
 
 # Complete Order
+
 Completing an order on the app moves it into the stage: 'Ready for Pickups'.
+
 ## HTTP Request
 
 > Requests need to contain a valid orderID
@@ -284,7 +286,6 @@ Status 200 OK
 | -------------- | ------ | --------------------------- |
 | successMessage | string | Success string. Usually "0" |
 
-
 # Responses
 
 ## Success
@@ -294,8 +295,8 @@ Status 200 OK
 | Status Code | Description                                                                                                                                |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | 200         | Every authenticated request recieved by the server and responded to without internal server error should return this                       |
+| 422         | This will be returned in the case of a client-side error such as invalid login credentials, missing orderID, or invalid formats            |
 | 401         | This will be returned if Session ID has been invalidated server side or deleted client side. App should return to log-in screen after this |
-
 
 ## Error
 
@@ -311,6 +312,8 @@ Status 200 OK
 
 Nominal errors such as incorrect log-in credentials, incorrect orderIDs for confirm/complete will return with a status code of 200 but with an error object defined below.
 
+Status: 422 Unprocessable Entity
+
 | Parameter | Type   | Description                                    |
 | --------- | ------ | ---------------------------------------------- |
 | error     | object | error object describing the error that occured |
@@ -318,3 +321,25 @@ Nominal errors such as incorrect log-in credentials, incorrect orderIDs for conf
 | Parameter | Type   | Description                                                                                 |
 | --------- | ------ | ------------------------------------------------------------------------------------------- |
 | errorType | string | String offering an explanation for error. Used in debugging but shouldn't be shown to users |
+
+# Version Updates
+
+> Responses will look like this
+
+```json
+{
+  "minimum_supported_version": "1.0.0.1",
+  "minimum_recommended_version": "1.7.0.1",
+  "blocked_versions": ["1.1.1"]
+}
+```
+
+`GET https://takeoutcentral.com/supported_versions`
+
+Status: 200 OK
+
+| Parameter                   | Type         | Description                                                                                            |
+| --------------------------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+| minimum_supported_version   | string       | minimum supported version. User can't use app if it's lower than this                                  |
+| minimum_recommended_version | string       | recommended version. User can skip this and keep using app                                             |
+| blocked_versions            | string Array | Array of versions that are blocked. Same functionality as if app was below the minimum_support_version |
