@@ -295,8 +295,8 @@ Status 200 OK
 | Status Code | Description                                                                                                                                |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | 200         | Every authenticated request recieved by the server and responded to without internal server error should return this                       |
-| 422         | This will be returned in the case of a client-side error such as invalid login credentials, missing orderID, or invalid formats            |
 | 401         | This will be returned if Session ID has been invalidated server side or deleted client side. App should return to log-in screen after this |
+| 422         | This will be returned in the case of a client-side error such as invalid login credentials, missing orderID, or invalid formats            |
 
 ## Error
 
