@@ -279,6 +279,9 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#version-updates" class="toc-h1 toc-link" data-title="Version Updates">Version Updates</a>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
@@ -362,7 +365,6 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
     </span><span class="s2">"errorType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid Credentials"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <p>Status 200 OK</p>
 
@@ -401,7 +403,7 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 </code></pre>
 <p>Upon a successful log in, the restaurantID will be returned to the client. At this point the app should register with OneSignal using the code seen to the right.</p>
 
-<p>This will allow Takeout Central servers to send push notifications to any apps with that associated restaurantID tag. </p>
+<p>This will allow Takeout Central servers to send push notifications to any apps with that associated restaurantID tag.</p>
 
 <aside class='success'>
 Further documentation for sendTag can be found <a href='https://documentation.onesignal.com/docs/android-native-sdk#section--sendtag-' target='blank' >here.</a>
@@ -421,6 +423,7 @@ Further documentation for sendTag can be found <a href='https://documentation.on
       </span><span class="s2">"orderNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.50"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.14"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sendTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-15T15:53:00"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"restaurantNotes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I'm vegan so please cook my food accordingly"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -496,6 +499,11 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 <td>orderID</td>
 <td>string</td>
 <td>TOC Defined orderID string.</td>
+</tr>
+<tr>
+<td>sendTime</td>
+<td>ISO-8601 DateTime</td>
+<td>Formatted Datetime for when the order was sent to the restaurant</td>
 </tr>
 <tr>
 <td>items</td>
@@ -703,6 +711,10 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 <td>Every authenticated request recieved by the server and responded to without internal server error should return this</td>
 </tr>
 <tr>
+<td>422</td>
+<td>This will be returned in the case of a client-side error such as invalid login credentials, missing orderID, or invalid formats</td>
+</tr>
+<tr>
 <td>401</td>
 <td>This will be returned if Session ID has been invalidated server side or deleted client side. App should return to log-in screen after this</td>
 </tr>
@@ -718,6 +730,8 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Nominal errors such as incorrect log-in credentials, incorrect orderIDs for confirm/complete will return with a status code of 200 but with an error object defined below.</p>
+
+<p>Status: 422 Unprocessable Entity</p>
 
 <table><thead>
 <tr>
@@ -744,6 +758,43 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 <td>errorType</td>
 <td>string</td>
 <td>String offering an explanation for error. Used in debugging but shouldn&#39;t be shown to users</td>
+</tr>
+</tbody></table>
+<h1 id='version-updates'>Version Updates</h1>
+<blockquote>
+<p>Responses will look like this</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"minimum_supported_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0.1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"minimum_recommended_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.7.0.1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"blocked_versions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1.1.1"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET https://takeoutcentral.com/supported_versions</code></p>
+
+<p>Status: 200 OK</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>minimum_supported_version</td>
+<td>string</td>
+<td>minimum supported version. User can&#39;t use app if it&#39;s lower than this</td>
+</tr>
+<tr>
+<td>minimum_recommended_version</td>
+<td>string</td>
+<td>recommended version. User can skip this and keep using app</td>
+</tr>
+<tr>
+<td>blocked_versions</td>
+<td>string Array</td>
+<td>Array of versions that are blocked. Same functionality as if app was below the minimum_support_version</td>
 </tr>
 </tbody></table>
 
