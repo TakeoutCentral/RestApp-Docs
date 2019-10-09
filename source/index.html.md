@@ -334,7 +334,7 @@ Status: 422 Unprocessable Entity
 }
 ```
 
-`GET https://takeoutcentral.com/supported_versions`
+`GET https://takeoutcentral.com/restaurant-app/supported_versions`
 
 Status: 200 OK
 
