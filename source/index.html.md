@@ -125,6 +125,7 @@ Further documentation for sendTag can be found <a href='https://documentation.on
       "sendTime": "2019-09-15T15:53:00",
       "restaurantNotes": "I'm vegan so please cook my food accordingly",
       "orderID": "1KL91EUR2JI445D8VOD8L7HWQ1885",
+      "status": "new",
       "items": [
         {
           "whofor": "John",
@@ -175,15 +176,16 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 
 ### Orders
 
-| Parameter       | Type              | Description                                                      |
-| --------------- | ----------------- | ---------------------------------------------------------------- |
-| orderNo         | string            | TOC Defined order number from 00 to 99                           |
-| orderID         | string            | TOC Defined orderID string.                                      |
-| sendTime        | ISO-8601 DateTime | Formatted Datetime for when the order was sent to the restaurant |
-| items           | Array             | Array of Item objects, contains options and instructions         |
-| subtotal        | string            | Total cost of the food in USD                                    |
-| tax             | string            | Sales Tax for the food                                           |
-| restaurantNotes | string            | Notes for the restaurant as a whole                              |
+| Parameter       | Type              | Description                                                                           |
+| --------------- | ----------------- | ------------------------------------------------------------------------------------- |
+| orderNo         | string            | TOC Defined order number from 00 to 99                                                |
+| orderID         | string            | TOC Defined orderID string.                                                           |
+| sendTime        | ISO-8601 DateTime | Formatted Datetime for when the order was sent to the restaurant                      |
+| items           | Array             | Array of Item objects, contains options and instructions                              |
+| subtotal        | string            | Total cost of the food in USD                                                         |
+| tax             | string            | Sales Tax for the food                                                                |
+| restaurantNotes | string            | Notes for the restaurant as a whole                                                   |
+| status          | string            | One of three values describing order state in order list: [new, confirmed, completed] |
 
 ### Item
 
