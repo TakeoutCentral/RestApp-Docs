@@ -170,43 +170,44 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 }
 ```
 
-| Parameter | Type  | Description                         |
-| --------- | ----- | ----------------------------------- |
-| Orders    | Array | Array of Order objects sorted by... |
+| Parameter | Type  | Nullable?                                                       | Description                         |
+| --------- | ----- | --------------------------------------------------------------- | ----------------------------------- |
+| Orders    | Array | Yes or No value specifying whether the value can be null or not | Array of Order objects sorted by... |
 
 ### Orders
 
-| Parameter       | Type              | Description                                                                           |
-| --------------- | ----------------- | ------------------------------------------------------------------------------------- |
-| orderNo         | string            | TOC Defined order number from 00 to 99                                                |
-| orderID         | string            | TOC Defined orderID string.                                                           |
-| sendTime        | ISO-8601 DateTime | Formatted Datetime for when the order was sent to the restaurant                      |
-| items           | Array             | Array of Item objects, contains options and instructions                              |
-| subtotal        | string            | Total cost of the food in USD                                                         |
-| tax             | string            | Sales Tax for the food                                                                |
-| restaurantNotes | string            | Notes for the restaurant as a whole                                                   |
-| status          | string            | One of three values describing order state in order list: [new, confirmed, completed] |
+| Parameter       | Type              | Nullable? | Description                                                                           |
+| --------------- | ----------------- | --------- | ------------------------------------------------------------------------------------- |
+| orderNo         | string            | No        | TOC Defined order number from 00 to 99                                                |
+| orderID         | string            | No        | TOC Defined orderID string.                                                           |
+| sendTime        | ISO-8601 DateTime | No        | Formatted Datetime for when the order was sent to the restaurant                      |
+| items           | Array             | No        | Array of Item objects, contains options and instructions                              |
+| subtotal        | string            | No        | Total cost of the food in USD                                                         |
+| tax             | string            | No        | Sales Tax for the food                                                                |
+| total           | string            | No        | subtotal + tax values in USD                                                          |
+| restaurantNotes | string            | Yes       | Notes for the restaurant as a whole                                                   |
+| status          | string            | No        | One of three values describing order state in order list: [new, confirmed, completed] |
 
 ### Item
 
-| Parameter | Type   | Description                                                |
-| --------- | ------ | ---------------------------------------------------------- |
-| itemid    | string | TOC defined for item. Unique WRT the current cart          |
-| qty       | string | quantity of current item in order                          |
-| price     | string | price of item in USD                                       |
-| item      | string | Human readable name of item                                |
-| options   | Array  | Array of Option objects                                    |
-| comment   | string | Special instructions for the item, this can be pretty long |
-| whofor    | string | Name of the customer who ordered this                      |
+| Parameter | Type   | Nullable? | Description                                                |
+| --------- | ------ | --------- | ---------------------------------------------------------- |
+| itemid    | string | No        | TOC defined for item. Unique WRT the current cart          |
+| qty       | string | No        | quantity of current item in order                          |
+| price     | string | No        | price of item in USD                                       |
+| item      | string | No        | Human readable name of item                                |
+| options   | Array  | No        | Array of Option objects                                    |
+| comment   | string | Yes       | Special instructions for the item, this can be pretty long |
+| whofor    | string | Yes       | Name of the customer who ordered this                      |
 
 ### Option
 
-| Parameter | Type   | Description                                            |
-| --------- | ------ | ------------------------------------------------------ |
-| optionid  | string | TOC defined id for option                              |
-| qty       | string | quantity of option                                     |
-| price     | string | price of option. About half the time this will be 0.00 |
-| option    | Array  | Human readable name for the option                     |
+| Parameter | Type   | Nullable? | Description                                            |
+| --------- | ------ | --------- | ------------------------------------------------------ |
+| optionid  | string | No        | TOC defined id for option                              |
+| qty       | string | No        | quantity of option                                     |
+| price     | string | No        | price of option. About half the time this will be 0.00 |
+| option    | Array  | No        | Human readable name for the option                     |
 
 # Confirm Order
 
