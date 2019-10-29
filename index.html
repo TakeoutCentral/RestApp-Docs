@@ -474,12 +474,14 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Nullable?</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>Orders</td>
 <td>Array</td>
+<td>Yes or No value specifying whether the value can be null or not</td>
 <td>Array of Order objects sorted by...</td>
 </tr>
 </tbody></table>
@@ -488,47 +490,62 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Nullable?</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>orderNo</td>
 <td>string</td>
+<td>No</td>
 <td>TOC Defined order number from 00 to 99</td>
 </tr>
 <tr>
 <td>orderID</td>
 <td>string</td>
+<td>No</td>
 <td>TOC Defined orderID string.</td>
 </tr>
 <tr>
 <td>sendTime</td>
 <td>ISO-8601 DateTime</td>
+<td>No</td>
 <td>Formatted Datetime for when the order was sent to the restaurant</td>
 </tr>
 <tr>
 <td>items</td>
 <td>Array</td>
+<td>No</td>
 <td>Array of Item objects, contains options and instructions</td>
 </tr>
 <tr>
 <td>subtotal</td>
 <td>string</td>
+<td>No</td>
 <td>Total cost of the food in USD</td>
 </tr>
 <tr>
 <td>tax</td>
 <td>string</td>
+<td>No</td>
 <td>Sales Tax for the food</td>
+</tr>
+<tr>
+<td>total</td>
+<td>string</td>
+<td>No</td>
+<td>subtotal + tax values in USD</td>
 </tr>
 <tr>
 <td>restaurantNotes</td>
 <td>string</td>
+<td>Yes</td>
 <td>Notes for the restaurant as a whole</td>
 </tr>
 <tr>
 <td>status</td>
 <td>string</td>
+<td>No</td>
 <td>One of three values describing order state in order list: [new, confirmed, completed]</td>
 </tr>
 </tbody></table>
@@ -537,42 +554,50 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Nullable?</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>itemid</td>
 <td>string</td>
+<td>No</td>
 <td>TOC defined for item. Unique WRT the current cart</td>
 </tr>
 <tr>
 <td>qty</td>
 <td>string</td>
+<td>No</td>
 <td>quantity of current item in order</td>
 </tr>
 <tr>
 <td>price</td>
 <td>string</td>
+<td>No</td>
 <td>price of item in USD</td>
 </tr>
 <tr>
 <td>item</td>
 <td>string</td>
+<td>No</td>
 <td>Human readable name of item</td>
 </tr>
 <tr>
 <td>options</td>
 <td>Array</td>
+<td>No</td>
 <td>Array of Option objects</td>
 </tr>
 <tr>
 <td>comment</td>
 <td>string</td>
+<td>Yes</td>
 <td>Special instructions for the item, this can be pretty long</td>
 </tr>
 <tr>
 <td>whofor</td>
 <td>string</td>
+<td>Yes</td>
 <td>Name of the customer who ordered this</td>
 </tr>
 </tbody></table>
@@ -581,27 +606,32 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Nullable?</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>optionid</td>
 <td>string</td>
+<td>No</td>
 <td>TOC defined id for option</td>
 </tr>
 <tr>
 <td>qty</td>
 <td>string</td>
+<td>No</td>
 <td>quantity of option</td>
 </tr>
 <tr>
 <td>price</td>
 <td>string</td>
+<td>No</td>
 <td>price of option. About half the time this will be 0.00</td>
 </tr>
 <tr>
 <td>option</td>
 <td>Array</td>
+<td>No</td>
 <td>Human readable name for the option</td>
 </tr>
 </tbody></table>
