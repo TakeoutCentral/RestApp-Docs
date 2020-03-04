@@ -296,6 +296,83 @@ Status 200 OK
 | -------------- | ------ | --------------------------- |
 | successMessage | string | Success string. Usually "0" |
 
+
+# Pause Orders
+
+Pausing orders is how restaurants stop orders. The response includes further steps including whether they have orders to finish or not. 
+If the app is not allowed to pause orders for some reason, a 422 response will return with an errorMessage to indicate why for the app.
+
+## HTTP Request
+
+> Requests need to have a time formatted as ISO-8601
+
+```json
+{
+  "untilWhen":"2020-04-30T15:53:00"
+}
+```
+
+`POST https://takeoutcentral.com/restaurant-app/pause-orders/`
+
+## Response
+
+> Responses will look like this
+
+```json
+{
+  "success": {
+    "successMessage": "You're pause and will receive no new orders however you currently have 3 orders to finish and 4 scheduled orders between now and when you're unpaused. Call partner support if you have any questions."
+  }
+}
+```
+
+Status 200 OK
+
+| Parameter | Type   | Description                                  |
+| --------- | ------ | -------------------------------------------- |
+| success   | object | success object describing the success status |
+
+### Success
+
+| Parameter      | Type   | Description                                                                                                                                                                                                          |
+| -------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| successMessage | string | A message for the restaurant containing how many orders are in their queue currently and how many orders are scheduled between now and the untilWhen time. This message should be displayed directly through the app |
+
+
+# Unpause Orders
+
+Unpausing orders is how restaurants start orders again if they want to continue before their pause time reaches 0
+
+## HTTP Request
+
+`POST https://takeoutcentral.com/restaurant-app/unpause-orders/`
+
+## Response
+
+> Responses will look like this
+
+```json
+{
+  "success": {
+    "successMessage": "0"
+  }
+}
+```
+
+
+Status 200 OK
+
+| Parameter | Type   | Description                                  |
+| --------- | ------ | -------------------------------------------- |
+| success   | object | success object describing the success status |
+
+### Success
+
+| Parameter      | Type   | Description                 |
+| -------------- | ------ | --------------------------- |
+| successMessage | string | Success string. Usually "0" |
+
+
 # Responses
 
 ## Success
