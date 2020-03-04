@@ -219,11 +219,18 @@ Confirming an order on the app moves it into the stage: 'In the Kitchen'.
 
 ```json
 {
-  "orderID": "1KL91EUR2JI445D8VOD8L7HWQ1885"
+  "orderID": "1KL91EUR2JI445D8VOD8L7HWQ1885",
+  "prepTime": "15"
 }
 ```
 
 `POST https://takeoutcentral.com/restaurant-app/confirm-order/`
+
+
+| Parameter | Type   | Description                                                      |
+| --------- | ------ | ---------------------------------------------------------------- |
+| orderID   | String | TOC Defined orderID                                              |
+| prepTime  | String | String containing a number of minutes inclusively between 5 - 60 |
 
 ## Response
 
