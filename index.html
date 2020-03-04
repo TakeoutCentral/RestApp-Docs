@@ -642,10 +642,30 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 <p>Requests need to contain a valid orderID</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="w">
+  </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"prepTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><code>POST https://takeoutcentral.com/restaurant-app/confirm-order/</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderID</td>
+<td>String</td>
+<td>TOC Defined orderID</td>
+</tr>
+<tr>
+<td>prepTime</td>
+<td>String</td>
+<td>String containing a number of minutes inclusively between 5 - 60</td>
+</tr>
+</tbody></table>
 <h2 id='response'>Response</h2>
 <blockquote>
 <p>Responses will look like this</p>
