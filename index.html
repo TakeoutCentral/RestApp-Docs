@@ -269,10 +269,32 @@
               </ul>
           </li>
           <li>
+            <a href="#pause-orders" class="toc-h1 toc-link" data-title="Pause Orders">Pause Orders</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request-5" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#response-3" class="toc-h2 toc-link" data-title="Response">Response</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#unpause-orders" class="toc-h1 toc-link" data-title="Unpause Orders">Unpause Orders</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request-6" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#response-4" class="toc-h2 toc-link" data-title="Response">Response</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#responses" class="toc-h1 toc-link" data-title="Responses">Responses</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#success-3" class="toc-h2 toc-link" data-title="Success">Success</a>
+                    <a href="#success-5" class="toc-h2 toc-link" data-title="Success">Success</a>
                   </li>
                   <li>
                     <a href="#error" class="toc-h2 toc-link" data-title="Error">Error</a>
@@ -755,7 +777,101 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 <td>Success string. Usually &quot;0&quot;</td>
 </tr>
 </tbody></table>
-<h1 id='responses'>Responses</h1><h2 id='success-3'>Success</h2><h3 id='status-codes'>Status Codes</h3>
+<h1 id='pause-orders'>Pause Orders</h1>
+<p>Pausing orders is how restaurants stop orders. The response includes further steps including whether they have orders to finish or not. 
+If the app is not allowed to pause orders for some reason, a 422 response will return with an errorMessage to indicate why for the app.</p>
+<h2 id='http-request-5'>HTTP Request</h2>
+<blockquote>
+<p>Requests need to have a time formatted as ISO-8601</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"untilWhen"</span><span class="p">:</span><span class="s2">"2020-04-30T15:53:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>POST https://takeoutcentral.com/restaurant-app/pause-orders/</code></p>
+<h2 id='response-3'>Response</h2>
+<blockquote>
+<p>Responses will look like this</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You're pause and will receive no new orders however you currently have 3 orders to finish and 4 scheduled orders between now and when you're unpaused. Call partner support if you have any questions."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Status 200 OK</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>object</td>
+<td>success object describing the success status</td>
+</tr>
+</tbody></table>
+<h3 id='success-3'>Success</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>successMessage</td>
+<td>string</td>
+<td>A message for the restaurant containing how many orders are in their queue currently and how many orders are scheduled between now and the untilWhen time. This message should be displayed directly through the app</td>
+</tr>
+</tbody></table>
+<h1 id='unpause-orders'>Unpause Orders</h1>
+<p>Unpausing orders is how restaurants start orders again if they want to continue before their pause time reaches 0</p>
+<h2 id='http-request-6'>HTTP Request</h2>
+<p><code>POST https://takeoutcentral.com/restaurant-app/unpause-orders/</code></p>
+<h2 id='response-4'>Response</h2>
+<blockquote>
+<p>Responses will look like this</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Status 200 OK</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>object</td>
+<td>success object describing the success status</td>
+</tr>
+</tbody></table>
+<h3 id='success-4'>Success</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>successMessage</td>
+<td>string</td>
+<td>Success string. Usually &quot;0&quot;</td>
+</tr>
+</tbody></table>
+<h1 id='responses'>Responses</h1><h2 id='success-5'>Success</h2><h3 id='status-codes'>Status Codes</h3>
 <table><thead>
 <tr>
 <th>Status Code</th>
