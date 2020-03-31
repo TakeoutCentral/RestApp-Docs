@@ -233,10 +233,7 @@
               </ul>
           </li>
           <li>
-            <a href="#onesignal-registration" class="toc-h1 toc-link" data-title="Onesignal Registration">Onesignal Registration</a>
-          </li>
-          <li>
-            <a href="#get-orders" class="toc-h1 toc-link" data-title="Get Orders">Get Orders</a>
+            <a href="#pushy-registration" class="toc-h1 toc-link" data-title="Pushy Registration">Pushy Registration</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#http-request-2" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
@@ -247,10 +244,21 @@
               </ul>
           </li>
           <li>
-            <a href="#confirm-order" class="toc-h1 toc-link" data-title="Confirm Order">Confirm Order</a>
+            <a href="#get-orders" class="toc-h1 toc-link" data-title="Get Orders">Get Orders</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#http-request-3" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#return-3" class="toc-h2 toc-link" data-title="Return">Return</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#confirm-order" class="toc-h1 toc-link" data-title="Confirm Order">Confirm Order</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request-4" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
                   </li>
                   <li>
                     <a href="#response" class="toc-h2 toc-link" data-title="Response">Response</a>
@@ -261,7 +269,7 @@
             <a href="#complete-order" class="toc-h1 toc-link" data-title="Complete Order">Complete Order</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#http-request-4" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                    <a href="#http-request-5" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
                   </li>
                   <li>
                     <a href="#response-2" class="toc-h2 toc-link" data-title="Response">Response</a>
@@ -272,7 +280,7 @@
             <a href="#pause-orders" class="toc-h1 toc-link" data-title="Pause Orders">Pause Orders</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#http-request-5" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                    <a href="#http-request-6" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
                   </li>
                   <li>
                     <a href="#response-3" class="toc-h2 toc-link" data-title="Response">Response</a>
@@ -283,7 +291,7 @@
             <a href="#unpause-orders" class="toc-h1 toc-link" data-title="Unpause Orders">Unpause Orders</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#http-request-6" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                    <a href="#http-request-7" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
                   </li>
                   <li>
                     <a href="#response-4" class="toc-h2 toc-link" data-title="Response">Response</a>
@@ -294,7 +302,7 @@
             <a href="#responses" class="toc-h1 toc-link" data-title="Responses">Responses</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#success-5" class="toc-h2 toc-link" data-title="Success">Success</a>
+                    <a href="#success-7" class="toc-h2 toc-link" data-title="Success">Success</a>
                   </li>
                   <li>
                     <a href="#error" class="toc-h2 toc-link" data-title="Error">Error</a>
@@ -417,25 +425,106 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <td>&quot;Invalid Credentials&quot; will always be the return value.</td>
 </tr>
 </tbody></table>
-<h1 id='onesignal-registration'>Onesignal Registration</h1><pre class="highlight kotlin tab-kotlin"><code><span class="k">import</span> <span class="nn">com.onesignal.OneSignal</span>
-<span class="p">.</span>
-<span class="p">.</span>
-<span class="p">.</span>
-<span class="n">OneSignal</span><span class="p">.</span><span class="n">sendTag</span><span class="p">(</span><span class="s">"restID"</span><span class="p">,</span> <span class="n">restaurantID</span><span class="p">)</span>
-</code></pre>
-<p>Upon a successful log in, the restaurantID will be returned to the client. At this point the app should register with OneSignal using the code seen to the right.</p>
+<h1 id='pushy-registration'>Pushy Registration</h1><h2 id='http-request-2'>HTTP Request</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pushyToken"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>POST https://takeoutcentral.com/restaurant-app/register-push</code></p>
 
-<p>This will allow Takeout Central servers to send push notifications to any apps with that associated restaurantID tag.</p>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>string</td>
+<td>Device token provided by Push API</td>
+</tr>
+</tbody></table>
+<h2 id='return-2'>Return</h2><h3 id='successful-registration'>Successful Registration</h3>
+<blockquote>
+<p>The above command returns JSON structured like this if this was an updated token for the logged in restID:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Device Registerred"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Status 200 OK</p>
 
-<aside class='success'>
-Further documentation for sendTag can be found <a href='https://documentation.onesignal.com/docs/android-native-sdk#section--sendtag-' target='blank' >here.</a>
-</aside>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>object</td>
+<td>success object describing the success status</td>
+</tr>
+</tbody></table>
+<h3 id='success'>Success</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>successMessage</td>
+<td>string</td>
+<td>Success string. Usually &quot;Device Registerred&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='already-registerred'>Already Registerred</h3>
+<blockquote>
+<p>This is the format and message when the device is already registerred to this restID</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Device already Registerred"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Status 200 OK</p>
 
-<aside class='success'>More info on integrating OneSignal can be found <a href='https://documentation.onesignal.com/docs/android-sdk-setup' target='blank'> here.</a>
-</aside>
-<h1 id='get-orders'>Get Orders</h1><h2 id='http-request-2'>HTTP Request</h2>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>object</td>
+<td>success object describing the success status</td>
+</tr>
+</tbody></table>
+<h3 id='success-2'>Success</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>successMessage</td>
+<td>string</td>
+<td>&quot;Device already Registerred&quot;</td>
+</tr>
+</tbody></table>
+<h1 id='get-orders'>Get Orders</h1><h2 id='http-request-3'>HTTP Request</h2>
 <p><code>GET https://takeoutcentral.com/restaurant-app/get-active-orders/</code></p>
-<h2 id='return-2'>Return</h2>
+<h2 id='return-3'>Return</h2>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -659,7 +748,7 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 </tbody></table>
 <h1 id='confirm-order'>Confirm Order</h1>
 <p>Confirming an order on the app moves it into the stage: &#39;In the Kitchen&#39;.</p>
-<h2 id='http-request-3'>HTTP Request</h2>
+<h2 id='http-request-4'>HTTP Request</h2>
 <blockquote>
 <p>Requests need to contain a valid orderID</p>
 </blockquote>
@@ -713,7 +802,7 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 <td>success object describing the success status</td>
 </tr>
 </tbody></table>
-<h3 id='success'>Success</h3>
+<h3 id='success-3'>Success</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -729,7 +818,7 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 </tbody></table>
 <h1 id='complete-order'>Complete Order</h1>
 <p>Completing an order on the app moves it into the stage: &#39;Ready for Pickups&#39;.</p>
-<h2 id='http-request-4'>HTTP Request</h2>
+<h2 id='http-request-5'>HTTP Request</h2>
 <blockquote>
 <p>Requests need to contain a valid orderID</p>
 </blockquote>
@@ -739,100 +828,6 @@ Further documentation for sendTag can be found <a href='https://documentation.on
 </span></code></pre>
 <p><code>POST https://takeoutcentral.com/restaurant-app/order-ready/</code></p>
 <h2 id='response-2'>Response</h2>
-<blockquote>
-<p>Responses will look like this</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Status 200 OK</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>success</td>
-<td>object</td>
-<td>success object describing the success status</td>
-</tr>
-</tbody></table>
-<h3 id='success-2'>Success</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>successMessage</td>
-<td>string</td>
-<td>Success string. Usually &quot;0&quot;</td>
-</tr>
-</tbody></table>
-<h1 id='pause-orders'>Pause Orders</h1>
-<p>Pausing orders is how restaurants stop orders. The response includes further steps including whether they have orders to finish or not. 
-If the app is not allowed to pause orders for some reason, a 422 response will return with an errorMessage to indicate why for the app.</p>
-<h2 id='http-request-5'>HTTP Request</h2>
-<blockquote>
-<p>Requests need to have a time formatted as ISO-8601</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"untilWhen"</span><span class="p">:</span><span class="s2">"2020-04-30T15:53:00"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><code>POST https://takeoutcentral.com/restaurant-app/pause-orders/</code></p>
-<h2 id='response-3'>Response</h2>
-<blockquote>
-<p>Responses will look like this</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You're pause and will receive no new orders however you currently have 3 orders to finish and 4 scheduled orders between now and when you're unpaused. Call partner support if you have any questions."</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Status 200 OK</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>success</td>
-<td>object</td>
-<td>success object describing the success status</td>
-</tr>
-</tbody></table>
-<h3 id='success-3'>Success</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>successMessage</td>
-<td>string</td>
-<td>A message for the restaurant containing how many orders are in their queue currently and how many orders are scheduled between now and the untilWhen time. This message should be displayed directly through the app</td>
-</tr>
-</tbody></table>
-<h1 id='unpause-orders'>Unpause Orders</h1>
-<p>Unpausing orders is how restaurants start orders again if they want to continue before their pause time reaches 0</p>
-<h2 id='http-request-6'>HTTP Request</h2>
-<p><code>POST https://takeoutcentral.com/restaurant-app/unpause-orders/</code></p>
-<h2 id='response-4'>Response</h2>
 <blockquote>
 <p>Responses will look like this</p>
 </blockquote>
@@ -871,7 +866,101 @@ If the app is not allowed to pause orders for some reason, a 422 response will r
 <td>Success string. Usually &quot;0&quot;</td>
 </tr>
 </tbody></table>
-<h1 id='responses'>Responses</h1><h2 id='success-5'>Success</h2><h3 id='status-codes'>Status Codes</h3>
+<h1 id='pause-orders'>Pause Orders</h1>
+<p>Pausing orders is how restaurants stop orders. The response includes further steps including whether they have orders to finish or not.
+If the app is not allowed to pause orders for some reason, a 422 response will return with an errorMessage to indicate why for the app.</p>
+<h2 id='http-request-6'>HTTP Request</h2>
+<blockquote>
+<p>Requests need to have a time formatted as ISO-8601</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"untilWhen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-30T15:53:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>POST https://takeoutcentral.com/restaurant-app/pause-orders/</code></p>
+<h2 id='response-3'>Response</h2>
+<blockquote>
+<p>Responses will look like this</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You're pause and will receive no new orders however you currently have 3 orders to finish and 4 scheduled orders between now and when you're unpaused. Call partner support if you have any questions."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Status 200 OK</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>object</td>
+<td>success object describing the success status</td>
+</tr>
+</tbody></table>
+<h3 id='success-5'>Success</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>successMessage</td>
+<td>string</td>
+<td>A message for the restaurant containing how many orders are in their queue currently and how many orders are scheduled between now and the untilWhen time. This message should be displayed directly through the app</td>
+</tr>
+</tbody></table>
+<h1 id='unpause-orders'>Unpause Orders</h1>
+<p>Unpausing orders is how restaurants start orders again if they want to continue before their pause time reaches 0</p>
+<h2 id='http-request-7'>HTTP Request</h2>
+<p><code>POST https://takeoutcentral.com/restaurant-app/unpause-orders/</code></p>
+<h2 id='response-4'>Response</h2>
+<blockquote>
+<p>Responses will look like this</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Status 200 OK</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>object</td>
+<td>success object describing the success status</td>
+</tr>
+</tbody></table>
+<h3 id='success-6'>Success</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>successMessage</td>
+<td>string</td>
+<td>Success string. Usually &quot;0&quot;</td>
+</tr>
+</tbody></table>
+<h1 id='responses'>Responses</h1><h2 id='success-7'>Success</h2><h3 id='status-codes'>Status Codes</h3>
 <table><thead>
 <tr>
 <th>Status Code</th>
