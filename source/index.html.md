@@ -84,26 +84,71 @@ Status 200 OK
 | --------- | ------ | ------------------------------------------------------ |
 | errorType | string | "Invalid Credentials" will always be the return value. |
 
-# Onesignal Registration
+# Pushy Registration
 
-```kotlin
-import com.onesignal.OneSignal
-.
-.
-.
-OneSignal.sendTag("restID", restaurantID)
+## HTTP Request
+
+```json
+{
+  "token": "pushyToken"
+}
 ```
 
-Upon a successful log in, the restaurantID will be returned to the client. At this point the app should register with OneSignal using the code seen to the right.
+`POST https://takeoutcentral.com/restaurant-app/register-push`
 
-This will allow Takeout Central servers to send push notifications to any apps with that associated restaurantID tag.
+| Parameter | Type   | Description                       |
+| --------- | ------ | --------------------------------- |
+| token     | string | Device token provided by Push API |
 
-<aside class='success'>
-Further documentation for sendTag can be found <a href='https://documentation.onesignal.com/docs/android-native-sdk#section--sendtag-' target='blank' >here.</a>
-</aside>
+## Return
 
-<aside class='success'>More info on integrating OneSignal can be found <a href='https://documentation.onesignal.com/docs/android-sdk-setup' target='blank'> here.</a>
-</aside>
+### Successful Registration
+
+> The above command returns JSON structured like this if this was an updated token for the logged in restID:
+
+```json
+{
+  "success": {
+    "successMessage": "Device Registerred"
+  }
+}
+```
+
+Status 200 OK
+
+| Parameter | Type   | Description                                  |
+| --------- | ------ | -------------------------------------------- |
+| success   | object | success object describing the success status |
+
+### Success
+
+| Parameter      | Type   | Description                                  |
+| -------------- | ------ | -------------------------------------------- |
+| successMessage | string | Success string. Usually "Device Registerred" |
+
+### Already Registerred
+
+> This is the format and message when the device is already registerred to this restID
+
+```json
+{
+  "success": {
+    "successMessage": "Device already Registerred"
+  }
+}
+```
+
+Status 200 OK
+
+| Parameter | Type   | Description                                  |
+| --------- | ------ | -------------------------------------------- |
+| success   | object | success object describing the success status |
+
+### Success
+
+| Parameter      | Type   | Description                  |
+| -------------- | ------ | ---------------------------- |
+| successMessage | string | "Device already Registerred" |
 
 # Get Orders
 
@@ -226,7 +271,6 @@ Confirming an order on the app moves it into the stage: 'In the Kitchen'.
 
 `POST https://takeoutcentral.com/restaurant-app/confirm-order/`
 
-
 | Parameter | Type   | Description                                                      |
 | --------- | ------ | ---------------------------------------------------------------- |
 | orderID   | String | TOC Defined orderID                                              |
@@ -296,10 +340,9 @@ Status 200 OK
 | -------------- | ------ | --------------------------- |
 | successMessage | string | Success string. Usually "0" |
 
-
 # Pause Orders
 
-Pausing orders is how restaurants stop orders. The response includes further steps including whether they have orders to finish or not. 
+Pausing orders is how restaurants stop orders. The response includes further steps including whether they have orders to finish or not.
 If the app is not allowed to pause orders for some reason, a 422 response will return with an errorMessage to indicate why for the app.
 
 ## HTTP Request
@@ -308,7 +351,7 @@ If the app is not allowed to pause orders for some reason, a 422 response will r
 
 ```json
 {
-  "untilWhen":"2020-04-30T15:53:00"
+  "untilWhen": "2020-04-30T15:53:00"
 }
 ```
 
@@ -338,7 +381,6 @@ Status 200 OK
 | -------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | successMessage | string | A message for the restaurant containing how many orders are in their queue currently and how many orders are scheduled between now and the untilWhen time. This message should be displayed directly through the app |
 
-
 # Unpause Orders
 
 Unpausing orders is how restaurants start orders again if they want to continue before their pause time reaches 0
@@ -359,7 +401,6 @@ Unpausing orders is how restaurants start orders again if they want to continue 
 }
 ```
 
-
 Status 200 OK
 
 | Parameter | Type   | Description                                  |
@@ -371,7 +412,6 @@ Status 200 OK
 | Parameter      | Type   | Description                 |
 | -------------- | ------ | --------------------------- |
 | successMessage | string | Success string. Usually "0" |
-
 
 # Responses
 
