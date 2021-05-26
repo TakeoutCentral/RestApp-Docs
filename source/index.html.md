@@ -21,8 +21,19 @@ Remember: API Examples are in JSON format but must be sent to the server as Cont
 </aside>
 
 <aside class="success">
-When testing, the endpoint should be directed to the subdomain https://scratch.takeoutcentral.com. Be sure that's what's in use before reporting errors. 
+When testing, the endpoint should be directed to the subdomain https://testsite.takeoutcentral.com. Be sure that's what's in use before reporting errors. 
 </aside>
+
+# HTTP Headers
+A few different HTTP Headers are expected. These are described here:
+
+| Header Key               | Requests            | Value                 | Description                                                                                                                        |
+|--------------------------|---------------------|-----------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| X-TOC-TABLET-BRAND       | All                 | os.Build.MANUFACTURER | Manufacturer of the tablet communicating username                                                                                  |
+| X-TOC-TABLET-MODEL       | All                 | os.Build.MODEL        | Model of the tablet communicating password                                                                                         |
+| X-TOC-TABLET-HAS-PRINTER | All                 | true/false            | true or false indicating whether a tablet is currently connected, if a tablet goes offline for any reason this should return false |
+| SESSIONID                | All except `/login` | ID                    | Authenticating ID for device session                                                                                               |
+  
 
 # Login
 
@@ -38,7 +49,7 @@ When testing, the endpoint should be directed to the subdomain https://scratch.t
 `POST https://takeoutcentral.com/restaurant-app/login`
 
 | Parameter | Type   | Description               |
-| --------- | ------ | ------------------------- |
+|-----------|--------|---------------------------|
 | restLogin | string | Restaurant login username |
 | pass      | string | associated password       |
 
@@ -56,7 +67,7 @@ When testing, the endpoint should be directed to the subdomain https://scratch.t
 ```
 
 | Parameter    | Type   | Description              |
-| ------------ | ------ | ------------------------ |
+|--------------|--------|--------------------------|
 | restaurantID | string | TOC ID for Restaurant    |
 | sessionID    | string | TOC Defined API Auth Key |
 
@@ -79,11 +90,11 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 Status 200 OK
 
 | Parameter | Type   | Description                                    |
-| --------- | ------ | ---------------------------------------------- |
+|-----------|--------|------------------------------------------------|
 | error     | object | error object describing the error that occured |
 
 | Parameter | Type   | Description                                            |
-| --------- | ------ | ------------------------------------------------------ |
+|-----------|--------|--------------------------------------------------------|
 | errorType | string | "Invalid Credentials" will always be the return value. |
 
 # Pushy Registration
@@ -99,7 +110,7 @@ Status 200 OK
 `POST https://takeoutcentral.com/restaurant-app/register-push`
 
 | Parameter | Type   | Description                       |
-| --------- | ------ | --------------------------------- |
+|-----------|--------|-----------------------------------|
 | token     | string | Device token provided by Push API |
 
 ## Return
@@ -119,13 +130,13 @@ Status 200 OK
 Status 200 OK
 
 | Parameter | Type   | Description                                  |
-| --------- | ------ | -------------------------------------------- |
+|-----------|--------|----------------------------------------------|
 | success   | object | success object describing the success status |
 
 ### Success
 
 | Parameter      | Type   | Description                                  |
-| -------------- | ------ | -------------------------------------------- |
+|----------------|--------|----------------------------------------------|
 | successMessage | string | Success string. Usually "Device Registerred" |
 
 ### Already Registerred
@@ -143,13 +154,13 @@ Status 200 OK
 Status 200 OK
 
 | Parameter | Type   | Description                                  |
-| --------- | ------ | -------------------------------------------- |
+|-----------|--------|----------------------------------------------|
 | success   | object | success object describing the success status |
 
 ### Success
 
 | Parameter      | Type   | Description                  |
-| -------------- | ------ | ---------------------------- |
+|----------------|--------|------------------------------|
 | successMessage | string | "Device already Registerred" |
 
 # Get Orders
@@ -218,13 +229,13 @@ Status 200 OK
 ```
 
 | Parameter | Type  | Nullable?                                                       | Description                         |
-| --------- | ----- | --------------------------------------------------------------- | ----------------------------------- |
+|-----------|-------|-----------------------------------------------------------------|-------------------------------------|
 | Orders    | Array | Yes or No value specifying whether the value can be null or not | Array of Order objects sorted by... |
 
 ### Orders
 
 | Parameter       | Type              | Nullable? | Description                                                                           |
-| --------------- | ----------------- | --------- | ------------------------------------------------------------------------------------- |
+|-----------------|-------------------|-----------|---------------------------------------------------------------------------------------|
 | orderNo         | string            | No        | TOC Defined order number from 00 to 99                                                |
 | orderID         | string            | No        | TOC Defined orderID string.                                                           |
 | sendTime        | ISO-8601 DateTime | No        | Formatted Datetime for when the order was sent to the restaurant                      |
@@ -238,7 +249,7 @@ Status 200 OK
 ### Item
 
 | Parameter | Type   | Nullable? | Description                                                |
-| --------- | ------ | --------- | ---------------------------------------------------------- |
+|-----------|--------|-----------|------------------------------------------------------------|
 | itemid    | string | No        | TOC defined for item. Unique WRT the current cart          |
 | qty       | string | No        | quantity of current item in order                          |
 | price     | string | No        | price of item in USD                                       |
@@ -250,7 +261,7 @@ Status 200 OK
 ### Option
 
 | Parameter | Type   | Nullable? | Description                                            |
-| --------- | ------ | --------- | ------------------------------------------------------ |
+|-----------|--------|-----------|--------------------------------------------------------|
 | optionid  | string | No        | TOC defined id for option                              |
 | qty       | string | No        | quantity of option                                     |
 | price     | string | No        | price of option. About half the time this will be 0.00 |
@@ -274,7 +285,7 @@ Confirming an order on the app moves it into the stage: 'In the Kitchen'.
 `POST https://takeoutcentral.com/restaurant-app/confirm-order/`
 
 | Parameter | Type   | Description                                                      |
-| --------- | ------ | ---------------------------------------------------------------- |
+|-----------|--------|------------------------------------------------------------------|
 | orderID   | String | TOC Defined orderID                                              |
 | prepTime  | String | String containing a number of minutes inclusively between 5 - 60 |
 
@@ -293,13 +304,13 @@ Confirming an order on the app moves it into the stage: 'In the Kitchen'.
 Status 200 OK
 
 | Parameter | Type   | Description                                  |
-| --------- | ------ | -------------------------------------------- |
+|-----------|--------|----------------------------------------------|
 | success   | object | success object describing the success status |
 
 ### Success
 
 | Parameter      | Type   | Description                 |
-| -------------- | ------ | --------------------------- |
+|----------------|--------|-----------------------------|
 | successMessage | string | Success string. Usually "0" |
 
 # Complete Order
@@ -333,13 +344,13 @@ Completing an order on the app moves it into the stage: 'Ready for Pickups'.
 Status 200 OK
 
 | Parameter | Type   | Description                                  |
-| --------- | ------ | -------------------------------------------- |
+|-----------|--------|----------------------------------------------|
 | success   | object | success object describing the success status |
 
 ### Success
 
 | Parameter      | Type   | Description                 |
-| -------------- | ------ | --------------------------- |
+|----------------|--------|-----------------------------|
 | successMessage | string | Success string. Usually "0" |
 
 # Pause Orders
@@ -374,13 +385,13 @@ If the app is not allowed to pause orders for some reason, a 422 response will r
 Status 200 OK
 
 | Parameter | Type   | Description                                  |
-| --------- | ------ | -------------------------------------------- |
+|-----------|--------|----------------------------------------------|
 | success   | object | success object describing the success status |
 
 ### Success
 
 | Parameter      | Type   | Description                                                                                                                                                                                                          |
-| -------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | successMessage | string | A message for the restaurant containing how many orders are in their queue currently and how many orders are scheduled between now and the untilWhen time. This message should be displayed directly through the app |
 
 # Unpause Orders
@@ -406,13 +417,13 @@ Unpausing orders is how restaurants start orders again if they want to continue 
 Status 200 OK
 
 | Parameter | Type   | Description                                  |
-| --------- | ------ | -------------------------------------------- |
+|-----------|--------|----------------------------------------------|
 | success   | object | success object describing the success status |
 
 ### Success
 
 | Parameter      | Type   | Description                 |
-| -------------- | ------ | --------------------------- |
+|----------------|--------|-----------------------------|
 | successMessage | string | Success string. Usually "0" |
 
 # Responses
@@ -422,7 +433,7 @@ Status 200 OK
 ### Status Codes
 
 | Status Code | Description                                                                                                                                |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+|-------------|--------------------------------------------------------------------------------------------------------------------------------------------|
 | 200         | Every authenticated request recieved by the server and responded to without internal server error should return this                       |
 | 401         | This will be returned if Session ID has been invalidated server side or deleted client side. App should return to log-in screen after this |
 | 422         | This will be returned in the case of a client-side error such as invalid login credentials, missing orderID, or invalid formats            |
@@ -444,11 +455,11 @@ Nominal errors such as incorrect log-in credentials, incorrect orderIDs for conf
 Status: 422 Unprocessable Entity
 
 | Parameter | Type   | Description                                    |
-| --------- | ------ | ---------------------------------------------- |
+|-----------|--------|------------------------------------------------|
 | error     | object | error object describing the error that occured |
 
 | Parameter | Type   | Description                                                                                 |
-| --------- | ------ | ------------------------------------------------------------------------------------------- |
+|-----------|--------|---------------------------------------------------------------------------------------------|
 | errorType | string | String offering an explanation for error. Used in debugging but shouldn't be shown to users |
 
 # Version Updates
@@ -468,7 +479,7 @@ Status: 422 Unprocessable Entity
 Status: 200 OK
 
 | Parameter                   | Type         | Description                                                                                            |
-| --------------------------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+|-----------------------------|--------------|--------------------------------------------------------------------------------------------------------|
 | minimum_supported_version   | string       | minimum supported version. User can't use app if it's lower than this                                  |
 | minimum_recommended_version | string       | recommended version. User can skip this and keep using app                                             |
 | blocked_versions            | string Array | Array of versions that are blocked. Same functionality as if app was below the minimum_support_version |
