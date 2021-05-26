@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>TOC API Reference</title>
 
-    <style>
+    <style media="screen">
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight .gh {
@@ -42,7 +42,7 @@
 .highlight .cs {
   color: #75715e;
 }
-.highlight .c, .highlight .cd {
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
   color: #75715e;
 }
 .highlight .err {
@@ -126,7 +126,7 @@
 .highlight .s1 {
   color: #e6db74;
 }
-.highlight .s {
+.highlight .s, .highlight .sa, .highlight .dl {
   color: #e6db74;
 }
 .highlight .na {
@@ -141,16 +141,13 @@
 .highlight .ne {
   color: #a6e22e;
 }
-.highlight .nf {
+.highlight .nf, .highlight .fm {
   color: #a6e22e;
 }
 .highlight .vc {
   color: #ffffff;
 }
 .highlight .nn {
-  color: #ffffff;
-}
-.highlight .nl {
   color: #ffffff;
 }
 .highlight .ni {
@@ -165,7 +162,7 @@
 .highlight .vi {
   color: #ffffff;
 }
-.highlight .nv {
+.highlight .nv, .highlight .vm {
   color: #ffffff;
 }
 .highlight .w {
@@ -176,6 +173,9 @@
 }
 .highlight .n, .highlight .py, .highlight .nx {
   color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
 }
 .highlight .ow {
   color: #f92672;
@@ -196,20 +196,110 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-a9fde460.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
   </head>
 
   <body class="index" data-languages="[&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" alt="Navbar" />
+        <img src="images/navbar-cad8cdcb.png" alt="" />
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo.png" class="logo" alt="Logo" />
+      <img src="images/logo-c150b6c1.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="javascript">javascript</a>
         </div>
@@ -330,11 +420,11 @@ Remember: API Examples are in JSON format but must be sent to the server as Cont
 <aside class="success">
 When testing, the endpoint should be directed to the subdomain https://scratch.takeoutcentral.com. Be sure that's what's in use before reporting errors. 
 </aside>
-<h1 id='login'>Login</h1><h2 id='http-request'>HTTP Request</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"restLogin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"predefined username"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"predefined password"</span><span class="w">
+<h1 id='login'>Login</h1><h2 id='http-request'>HTTP Request</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"restLogin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"predefined username"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"predefined password"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p><code>POST https://takeoutcentral.com/restaurant-app/login</code></p>
 
 <table><thead>
@@ -359,11 +449,11 @@ When testing, the endpoint should be directed to the subdomain https://scratch.t
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"restaurantID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sessionID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"restaurantID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sessionID"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -390,12 +480,12 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <blockquote>
 <p>This is the format and message for an invalid log in attempt</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"errorType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid Credentials"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"errorType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid Credentials"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Status 200 OK</p>
 
 <table><thead>
@@ -425,10 +515,10 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <td>&quot;Invalid Credentials&quot; will always be the return value.</td>
 </tr>
 </tbody></table>
-<h1 id='pushy-registration'>Pushy Registration</h1><h2 id='http-request-2'>HTTP Request</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pushyToken"</span><span class="w">
+<h1 id='pushy-registration'>Pushy Registration</h1><h2 id='http-request-2'>HTTP Request</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pushyToken"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p><code>POST https://takeoutcentral.com/restaurant-app/register-push</code></p>
 
 <table><thead>
@@ -448,12 +538,12 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <blockquote>
 <p>The above command returns JSON structured like this if this was an updated token for the logged in restID:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Device Registerred"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Device Registerred"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Status 200 OK</p>
 
 <table><thead>
@@ -487,12 +577,12 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <blockquote>
 <p>This is the format and message when the device is already registerred to this restID</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Device already Registerred"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Device already Registerred"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Status 200 OK</p>
 
 <table><thead>
@@ -528,59 +618,59 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"Orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"Orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"orderNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.50"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.14"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sendTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-15T15:53:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"restaurantNotes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I'm vegan so please cook my food accordingly"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="nl">"orderNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28.50"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.14"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sendTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-15T15:53:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"restaurantNotes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I'm vegan so please cook my food accordingly"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"whofor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"itemid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344514B"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.00"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="nl">"whofor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"itemid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344514B"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.00"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552300"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 2.50"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slab Bacon"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+              </span><span class="nl">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552300"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 2.50"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slab Bacon"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
             </span><span class="p">}</span><span class="w">
           </span><span class="p">],</span><span class="w">
-          </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing special instructions"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple &amp; Bacon Bowl"</span><span class="w">
+          </span><span class="nl">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing special instructions"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple &amp; Bacon Bowl"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Veggie Burger"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 2.50"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552298"</span><span class="w">
+              </span><span class="nl">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Veggie Burger"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 2.50"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552298"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Egg"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 1.50"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552299"</span><span class="w">
+              </span><span class="nl">"option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Egg"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">" 1.50"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"optionid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552299"</span><span class="w">
             </span><span class="p">}</span><span class="w">
           </span><span class="p">],</span><span class="w">
-          </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple &amp; Bacon Bowl"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"whofor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"itemid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344514A"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.00"</span><span class="w">
+          </span><span class="nl">"qty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apple &amp; Bacon Bowl"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"whofor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"itemid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344514A"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11.00"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -752,11 +842,11 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <blockquote>
 <p>Requests need to contain a valid orderID</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"prepTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"prepTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p><code>POST https://takeoutcentral.com/restaurant-app/confirm-order/</code></p>
 
 <table><thead>
@@ -781,12 +871,12 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <blockquote>
 <p>Responses will look like this</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Status 200 OK</p>
 
 <table><thead>
@@ -822,21 +912,21 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <blockquote>
 <p>Requests need to contain a valid orderID</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"orderID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1KL91EUR2JI445D8VOD8L7HWQ1885"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p><code>POST https://takeoutcentral.com/restaurant-app/order-ready/</code></p>
 <h2 id='response-2'>Response</h2>
 <blockquote>
 <p>Responses will look like this</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Status 200 OK</p>
 
 <table><thead>
@@ -873,21 +963,21 @@ If the app is not allowed to pause orders for some reason, a 422 response will r
 <blockquote>
 <p>Requests need to have a time formatted as ISO-8601</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"untilWhen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-30T15:53:00"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"untilWhen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-30T15:53:00"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p><code>POST https://takeoutcentral.com/restaurant-app/pause-orders/</code></p>
 <h2 id='response-3'>Response</h2>
 <blockquote>
 <p>Responses will look like this</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You're pause and will receive no new orders however you currently have 3 orders to finish and 4 scheduled orders between now and when you're unpaused. Call partner support if you have any questions."</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You're pause and will receive no new orders however you currently have 3 orders to finish and 4 scheduled orders between now and when you're unpaused. Call partner support if you have any questions."</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Status 200 OK</p>
 
 <table><thead>
@@ -925,12 +1015,12 @@ If the app is not allowed to pause orders for some reason, a 422 response will r
 <blockquote>
 <p>Responses will look like this</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"successMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Status 200 OK</p>
 
 <table><thead>
@@ -984,12 +1074,12 @@ If the app is not allowed to pause orders for some reason, a 422 response will r
 <blockquote>
 <p>Errors will look like this</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"errorType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Missing orderID"</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"errorType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Missing orderID"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p>Nominal errors such as incorrect log-in credentials, incorrect orderIDs for confirm/complete will return with a status code of 200 but with an error object defined below.</p>
 
 <p>Status: 422 Unprocessable Entity</p>
@@ -1025,12 +1115,12 @@ If the app is not allowed to pause orders for some reason, a 422 response will r
 <blockquote>
 <p>Responses will look like this</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"minimum_supported_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0.1"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"minimum_recommended_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.7.0.1"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"blocked_versions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1.1.1"</span><span class="p">]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"minimum_supported_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0.1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"minimum_recommended_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.7.0.1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"blocked_versions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1.1.1"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre></div>
 <p><code>GET https://takeoutcentral.com/restaurant-app/supported_versions</code></p>
 
 <p>Status: 200 OK</p>
