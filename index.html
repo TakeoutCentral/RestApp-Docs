@@ -312,6 +312,9 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
+            <a href="#http-headers" class="toc-h1 toc-link" data-title="HTTP Headers">HTTP Headers</a>
+          </li>
+          <li>
             <a href="#login" class="toc-h1 toc-link" data-title="Login">Login</a>
               <ul class="toc-list-h2">
                   <li>
@@ -418,8 +421,44 @@ Remember: API Examples are in JSON format but must be sent to the server as Cont
 </aside>
 
 <aside class="success">
-When testing, the endpoint should be directed to the subdomain https://scratch.takeoutcentral.com. Be sure that's what's in use before reporting errors. 
+When testing, the endpoint should be directed to the subdomain https://testsite.takeoutcentral.com. Be sure that's what's in use before reporting errors. 
 </aside>
+<h1 id='http-headers'>HTTP Headers</h1>
+<p>A few different HTTP Headers are expected. These are described here:</p>
+
+<table><thead>
+<tr>
+<th>Header Key</th>
+<th>Requests</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-TOC-TABLET-BRAND</td>
+<td>All</td>
+<td>os.Build.MANUFACTURER</td>
+<td>Manufacturer of the tablet communicating username</td>
+</tr>
+<tr>
+<td>X-TOC-TABLET-MODEL</td>
+<td>All</td>
+<td>os.Build.MODEL</td>
+<td>Model of the tablet communicating password</td>
+</tr>
+<tr>
+<td>X-TOC-TABLET-HAS-PRINTER</td>
+<td>All</td>
+<td>true/false</td>
+<td>true or false indicating whether a tablet is currently connected, if a tablet goes offline for any reason this should return false</td>
+</tr>
+<tr>
+<td>SESSIONID</td>
+<td>All except <code>/login</code></td>
+<td>ID</td>
+<td>Authenticating ID for device session</td>
+</tr>
+</tbody></table>
 <h1 id='login'>Login</h1><h2 id='http-request'>HTTP Request</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"restLogin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"predefined username"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"predefined password"</span><span class="w">
