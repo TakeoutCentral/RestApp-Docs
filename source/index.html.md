@@ -224,13 +224,15 @@ Status 200 OK
         }
       ]
     }
-  ]
+  ],
+  "maxPrepTime": 60
 }
 ```
 
-| Parameter | Type  | Nullable?                                                       | Description                         |
-|-----------|-------|-----------------------------------------------------------------|-------------------------------------|
-| Orders    | Array | Yes or No value specifying whether the value can be null or not | Array of Order objects sorted by... |
+| Parameter   | Type   | Nullable?                                                       | Description                                                         |
+|-----------  |--------|-----------------------------------------------------------------|---------------------------------------------------------------------|
+| Orders      | Array  | Yes or No value specifying whether the value can be null or not | Array of Order objects sorted by...                                 |
+| maxPrepTime | Number | No                                                              | Max number of minutes allowed for setting the prep time of an order |
 
 ### Orders
 
