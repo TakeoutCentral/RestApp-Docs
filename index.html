@@ -707,7 +707,8 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
         </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"maxPrepTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <table><thead>
@@ -723,6 +724,12 @@ sessionID's value needs to be used in each subsequent header's HTTP Request with
 <td>Array</td>
 <td>Yes or No value specifying whether the value can be null or not</td>
 <td>Array of Order objects sorted by...</td>
+</tr>
+<tr>
+<td>maxPrepTime</td>
+<td>Number</td>
+<td>No</td>
+<td>Max number of minutes allowed for setting the prep time of an order</td>
 </tr>
 </tbody></table>
 <h3 id='orders'>Orders</h3>
